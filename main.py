@@ -50,10 +50,13 @@ def import_model_modules(model_name):
     elif model_name.startswith("gpt"):
         from models import load_gpt_model, send_question_to_openai
         return load_gpt_model, send_question_to_openai
+    elif model_name.startswith("robospatialBrain"):
+        from models import load_robospatialBrain_model, run_robospatialBrain
+        return load_robospatialBrain_model, run_robospatialBrain
     else:
         raise ValueError(f"Unsupported model: {model_name}")
 
-def load_model(model_name, model_path=None):
+def load_model(model_name, model_path=None, low_memory=False):
     """
     Load the chosen model once, returning any needed kwargs (tokenizer, model object, etc.).
     If model_path is provided, it overrides the default model checkpoint.
@@ -62,9 +65,11 @@ def load_model(model_name, model_path=None):
     import torch
     global device
     device = torch.device("cuda") if torch.cuda.is_available() else "cpu"
-    
+
     # Dynamically import only what we need
     load_func, _ = import_model_modules(model_name)
+    if model_name.startswith("robospatialBrain"):
+        return load_func(model_path, low_memory=low_memory)
     return load_func(model_path)
 
 def run_model(question, image_path, depth_path, model_name, model_kwargs):
@@ -260,6 +265,16 @@ def main():
     parser.add_argument('--dry-run', action='store_true', help='Only evaluate the first 3 examples')
     parser.add_argument('--no-progress', action='store_true', help='Disable progress bar output')
     parser.add_argument(
+        '--low-memory',
+        action='store_true',
+        help=(
+            'Only for robospatialBrain: load one VL model at a time. '
+            'LM classifier is loaded first to pre-classify questions; '
+            'VL-B handles context/configuration, VL-F handles compatibility, '
+            'swapping in and out of GPU memory as needed.'
+        ),
+    )
+    parser.add_argument(
         '--num-points-to-match',
         type=int,
         default=None,
@@ -343,7 +358,7 @@ def main():
             torch.cuda.manual_seed_all(56)
             
         print(f"Loading model '{model_name}' for RoboSpatial-Home evaluation...")
-        model_kwargs = load_model(model_name, model_path)
+        model_kwargs = load_model(model_name, model_path, low_memory=args.low_memory)
         print("Model loaded successfully.")
 
     all_stats = []

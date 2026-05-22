@@ -364,3 +364,23 @@ def run_qwen2vl(question, image_path, depth_path, kwargs):
     )[0]
 
     return output_text.strip()
+
+
+def load_robospatialBrain_model(model_path=None, low_memory=False):
+    import sys
+    import os
+    _d = os.path.join(os.path.dirname(os.path.abspath(__file__)), "model", "scripts")
+    if _d not in sys.path:
+        sys.path.insert(0, _d)
+    from inference import load_robospatialBrain_models
+    return load_robospatialBrain_models(low_memory=low_memory)
+
+
+def run_robospatialBrain(question, image_path, depth_path, kwargs):
+    import sys
+    import os
+    _d = os.path.join(os.path.dirname(os.path.abspath(__file__)), "model", "scripts")
+    if _d not in sys.path:
+        sys.path.insert(0, _d)
+    from inference import inference_single
+    return inference_single(question, image_path, kwargs)
