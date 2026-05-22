@@ -51,6 +51,18 @@ pip install transformers>=5.0.0 accelerate datasets qwen-vl-utils Pillow tqdm Py
 pip install flash-attn --no-build-isolation
 ```
 
+
+---
+
+## Downloading the Checkpoint
+
+https://huggingface.co/lbx511/RoboSpatialBrain
+
+Place the checkpoint under `./model`
+
+
+
+
 ---
 
 ## Running the Evaluation
