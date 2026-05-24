@@ -23,8 +23,6 @@ pip install -r requirements.txt
 
 > **Note**: `requirements.txt` includes `--extra-index-url https://download.pytorch.org/whl/cu128` so that PyTorch and torchvision are pulled from the CUDA 12.8 wheel index automatically. If your CUDA driver version differs, replace `cu128` with the appropriate suffix (e.g. `cu118`, `cu121`) in `requirements.txt` before running the command above.
 
-> **Note**: `transformers >= 5.0` is required for Qwen3/3.5 `enable_thinking` support.
-
 ### Flash Attention 2 (optional but recommended)
 
 Flash Attention cannot be installed via `requirements.txt` because it must be compiled against your local CUDA toolkit. Install it separately after the steps above:
@@ -39,15 +37,32 @@ pip install flash-attn --no-build-isolation
 
 Download the checkpoint from HuggingFace: https://huggingface.co/lbx511/RoboSpatialBrain
 
-The weights consist of three sub-models. Place them under `./model` so the directory looks like this:
+The weights consist of three sub-models plus an inference scripts directory. After cloning this repo, manually create a `model/` directory and place the four downloaded directories inside it:
+
+```bash
+mkdir -p model
+# then move/copy LM, VL-B, VL-F, scripts into model/
+```
+
+The final layout should look like this:
 
 ```
-RoboSpatialBrain/
-    ├──model/
-        ├── LM/                              
-        ├── VL-B/                            
-        ├── VL-F/                            
-        └── scripts/                         
+RoboSpatial-Eval-Submit/
+├── config.yaml
+├── main.py
+├── models.py
+├── evaluation.py
+├── download_benchmark.py
+├── upload.py
+├── requirements.txt
+├── README.md
+├── ADDING_MODELS.md
+├── model/              ← create this directory manually
+│   ├── LM/
+│   ├── VL-B/
+│   ├── VL-F/
+│   └── scripts/
+└── results/
 ```
 
 ---

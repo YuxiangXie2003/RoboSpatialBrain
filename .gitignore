@@ -173,3 +173,4 @@ cython_debug/
 model/*
 results/*
 RoboSpatial-Home-cache/*
+upload.py
