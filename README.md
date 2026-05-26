@@ -4,6 +4,16 @@ This repository evaluates **RoboSpatialBrain** on the [RoboSpatial-Home](https:/
 
 ---
 
+## Team RoboSpatialBrain
+
+Contributors:
+
+- Yuxiang Xie, Harbin Institute of Technology, Shenzhen
+- Jianming Xing, Harbin Institute of Technology, Shenzhen
+- Zijian Hong, Harbin Institute of Technology, Shenzhen
+- Qi Lv, Harbin Institute of Technology, Shenzhen
+- Xiang Deng, Harbin Institute of Technology, Shenzhen
+
 ## Environment Setup
 
 ### Conda environment (recommended)
