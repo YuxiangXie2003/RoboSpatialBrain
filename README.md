@@ -72,7 +72,6 @@ RoboSpatial-Eval-Submit/
 ├── model/              ← create this directory manually
 │   ├── LM/
 │   ├── VL-B/
-│   ├── VL-F/
 │   └── scripts/
 └── results/
 ```
