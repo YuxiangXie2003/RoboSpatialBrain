@@ -9,10 +9,12 @@ This repository evaluates **RoboSpatialBrain** on the [RoboSpatial-Home](https:/
 Contributors:
 
 - Yuxiang Xie, Harbin Institute of Technology, Shenzhen
+- Qi Lv, Harbin Institute of Technology, Shenzhen
 - Jianming Xing, Harbin Institute of Technology, Shenzhen
 - Zijian Hong, Harbin Institute of Technology, Shenzhen
-- Qi Lv, Harbin Institute of Technology, Shenzhen
-- Xiang Deng, Harbin Institute of Technology, Shenzhen
+- Xiang Deng, Harbin Institute of Technology, Shenzhen; Ruoyu Technology
+- Weili Guan, Harbin Institute of Technology, Shenzhen
+- Liqiang Nie, Harbin Institute of Technology, Shenzhen
 
 ## Environment Setup
 
